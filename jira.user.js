@@ -2,6 +2,7 @@
 // @name Jira Column Toggle
 // @author FallDownTheSystem
 // @namespace FDTS
+// @version 0.3
 // @match *://*.atlassian.net/secure/RapidBoard.jspa*
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @run-at document-idle
@@ -130,9 +131,13 @@
 					// Look for columns being added
 					if ($(node).find('div.ghx-column-header-flex').length > 0) {
 						columnsFound++;
-						if (columnsFound != 2) {
+                        console.log("Column mutation triggered");
+						if (columnsFound < 1) {
 							return;
 						}
+                      
+                        console.log("Deleting eyes");
+                        $('.eye-toggle').remove();
 
 						// Fix css for column headers, add eye icons for hiding columns
 						$('div.ghx-column-header-flex')
