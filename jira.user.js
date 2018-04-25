@@ -2,7 +2,7 @@
 // @name Jira Column Toggle
 // @author FallDownTheSystem
 // @namespace FDTS
-// @version 0.3
+// @version 0.4
 // @match *://*.atlassian.net/secure/RapidBoard.jspa*
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @run-at document-idle
@@ -74,6 +74,8 @@
 			.find('.ghx-column-header-flex-1 h2')
 			.text()
 			.toUpperCase();
+      
+        $('#ghx-quick-filters ul').find(`li[data-index='${index}']`).remove();
 
 		$('#ghx-quick-filters ul').append(
 			`<li class="ShowColumnButtonListItem" data-index="${index}">
