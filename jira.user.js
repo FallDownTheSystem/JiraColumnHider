@@ -131,12 +131,10 @@
 					// Look for columns being added
 					if ($(node).find('div.ghx-column-header-flex').length > 0) {
 						columnsFound++;
-                        console.log("Column mutation triggered");
 						if (columnsFound < 1) {
 							return;
 						}
                       
-                        console.log("Deleting eyes");
                         $('.eye-toggle').remove();
 
 						// Fix css for column headers, add eye icons for hiding columns
