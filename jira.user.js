@@ -2,7 +2,7 @@
 // @name Jira Column Toggle
 // @author FallDownTheSystem
 // @namespace FDTS
-// @version 0.6
+// @version 0.7
 // @match *://*.atlassian.net/secure/RapidBoard.jspa*
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @run-at document-idle
@@ -110,7 +110,7 @@
 	var targetNode = document.getElementById('jira');
 
 	// Options for the observer (which mutations to observe)
-	var config = { attributes: false, childList: true, subtree: true };
+	var config = { attributes: true, childList: true, subtree: true };
 
 	// Callback function to execute when mutations are observed
 	var callback = function(mutationsList) {
@@ -177,6 +177,18 @@
 					}
 				}
 			}
+            else if (mutation.type == 'attributes') {
+                if (mutation.attributeName == 'class' && $(mutation.target).hasClass("ghx-narrow-card")) {
+                  var maxWidth = $(mutation.target).width();
+                }
+                
+                if (maxWidth > 160) {
+                    $(mutation.target).removeClass("ghx-xtra-narrow-card");
+                }
+                if (maxWidth > 210) {
+                    $(mutation.target).removeClass("ghx-narrow-card");
+                }            
+            }
 		}
 	};
 
