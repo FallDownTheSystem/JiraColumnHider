@@ -129,8 +129,8 @@
 					}
 					// Look for columns being added
 					if ($(node).find('div.ghx-column-header-flex').length > 0) {
-						if (columnsFound < 1) {
-							columnsFound++;
+						columnsFound++;
+						if (columnsFound != 2) {
 							return;
 						}
 
