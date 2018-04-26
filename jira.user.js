@@ -2,7 +2,7 @@
 // @name Jira Column Toggle
 // @author FallDownTheSystem
 // @namespace FDTS
-// @version 0.7
+// @version 0.8
 // @match *://*.atlassian.net/secure/RapidBoard.jspa*
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @run-at document-idle
@@ -55,6 +55,7 @@
 		.eye-toggle-icon { opacity: 0.5; margin: -2px 0px -4px 0px; align-self: flex-end; transition: 0.3s; }
 		.eye-toggle-icon:hover { opacity: 1.0; }
 		.showButton { opacity: 0.5; margin: 0px -6px -7px 0px; }
+        	.padding-fix { padding: 10px 10px 2px 10px !important; }
 	`);
 
 	function hideColumn(index) {
@@ -76,6 +77,7 @@
 			.toUpperCase();
       
         $(`#ghx-quick-filters > ul > li[data-index='${index}']`).remove();
+      
 
 		$('#ghx-quick-filters > ul').append(
 			`<li class="ShowColumnButtonListItem" data-index="${index}">
@@ -138,6 +140,8 @@
 						}
                       
                         $('.eye-toggle').remove();
+                      
+                        $('#ghx-column-headers > li').addClass("padding-fix");
 
 						// Fix css for column headers, add eye icons for hiding columns
 						$('div.ghx-column-header-flex')
