@@ -2,7 +2,7 @@
 // @name Jira Column Toggle
 // @author FallDownTheSystem
 // @namespace FDTS
-// @version 0.8
+// @version 0.9
 // @match *://*.atlassian.net/secure/RapidBoard.jspa*
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @run-at document-idle
@@ -117,6 +117,11 @@
 	// Callback function to execute when mutations are observed
 	var callback = function(mutationsList) {
 		for (var mutation of mutationsList) {
+
+            if (mutation.target.nodeName == 'P' || mutation.target.className == 'ProseMirror' || mutation.target.className == 'ProseMirror ProseMirror-focused') {
+               continue;
+            }
+          
 			if (mutation.type == 'childList') {
 				for (node of mutation.addedNodes) {
 					// Look for overlays being added
